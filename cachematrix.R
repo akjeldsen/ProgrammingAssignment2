@@ -28,4 +28,15 @@ makeCacheMatrix <- function(x = matrix()) {
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         ## also here using the example as the template
+        m <- x$getinverse()
+        ## see what is in the cache
+        if(!is.null(m)) {
+                message("getting cached data")
+                return(m)
+        }
+        data <- x$get()
+        ##using the solve function instead of mean from template
+        m <- solve(data, ...)
+        x$setinverse(m)
+        m
 }
